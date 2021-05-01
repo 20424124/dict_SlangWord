@@ -29,6 +29,10 @@ public class menuFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btn_SearchEdit = new javax.swing.JButton();
+        btn_HistorySearch = new javax.swing.JButton();
+        btn_Random = new javax.swing.JButton();
+        btn_Quiz = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -36,6 +40,37 @@ public class menuFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Dictionary Slang Word");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btn_SearchEdit.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btn_SearchEdit.setText("Tìm Kiếm - Chỉnh Sửa");
+        btn_SearchEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_SearchEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SearchEditActionPerformed(evt);
+            }
+        });
+
+        btn_HistorySearch.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btn_HistorySearch.setText("Các Từ Đã Tìm Kiếm");
+        btn_HistorySearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_HistorySearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_HistorySearchActionPerformed(evt);
+            }
+        });
+
+        btn_Random.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btn_Random.setText("Random Slang Word");
+        btn_Random.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btn_Quiz.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btn_Quiz.setText("Đố Vui");
+        btn_Quiz.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Quiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_QuizActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,6 +82,17 @@ public class menuFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(110, 110, 110)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn_SearchEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_HistorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(43, 43, 43)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btn_Random, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Quiz, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(111, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -56,10 +102,36 @@ public class menuFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(374, 374, 374))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(121, 121, 121)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_SearchEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Random, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(49, 49, 49)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_HistorySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Quiz, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(121, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_SearchEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchEditActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btn_SearchEditActionPerformed
+
+    private void btn_HistorySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HistorySearchActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_HistorySearchActionPerformed
+
+    private void btn_QuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_QuizActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btn_QuizActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,6 +169,10 @@ public class menuFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_HistorySearch;
+    private javax.swing.JButton btn_Quiz;
+    private javax.swing.JButton btn_Random;
+    private javax.swing.JButton btn_SearchEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
