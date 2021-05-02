@@ -5,6 +5,16 @@
  */
 package com.mycompany.dic_slangword;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.ListSelectionModel;
@@ -24,7 +34,10 @@ public class editFrame extends javax.swing.JFrame {
      * Creates new form editFrame
      */
     int find = 0;
-    public editFrame() {
+    HashMap<String, List<String>> listSlangWord = new HashMap<String, List<String>>();
+    public dao_SW db = new dao_SW();
+    
+    public editFrame() throws FileNotFoundException {
         initComponents();
         TableColumnModel columnModel = tblSlangWord.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
@@ -38,6 +51,8 @@ public class editFrame extends javax.swing.JFrame {
         
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        showData();
         
     }
 
@@ -107,7 +122,7 @@ public class editFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbFind, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(18, 18, 18)
                         .addComponent(txtFind))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -128,7 +143,28 @@ public class editFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+     public void showData() throws FileNotFoundException{
+        DefaultTableModel model = (DefaultTableModel) tblSlangWord.getModel();    
+        model.setRowCount(0);
+        listSlangWord = db.getData();
+        
+        System.out.println("==============================================================");
+                Map<String, List<String>> sortedMap = new TreeMap<>(listSlangWord);
+                Set<String> keySet = sortedMap.keySet();
+                //sortedMap.entrySet().forEach(System.out::println);
+                for (String key : keySet) {
+                        
+                        //System.out.println(key + " - " + sortedMap.get(key));
+                        Set<String> set = new HashSet<String>(sortedMap.get(key));
+                        List<String> list = new ArrayList<String>(set);
+                        for(String item : list){
+                             model.addRow(new Object[]{key, item.trim()});
+                        }
+                        //System.out.println(key + ": " + list);
+                 }
+    }
+    
     private void cbFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFindActionPerformed
         // TODO add your handling code here:
         if((int)cbFind.getSelectedIndex() == 0){
@@ -198,7 +234,11 @@ public class editFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editFrame().setVisible(true);
+                try {
+                    new editFrame().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(editFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
