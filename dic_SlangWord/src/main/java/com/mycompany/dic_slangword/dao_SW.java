@@ -7,8 +7,13 @@ package com.mycompany.dic_slangword;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -114,4 +119,69 @@ public class dao_SW {
         
         
 }
+    
+     public HashMap<String, List<String>> getData() throws FileNotFoundException{
+        readFile();
+        HashMap<String, List<String>> data = new HashMap<String, List<String>>();
+        Map<String, List<String>> sortedMap = new TreeMap<>(listSlangWord);
+        Set<String> keySet = sortedMap.keySet();
+                //sortedMap.entrySet().forEach(System.out::println);
+                for (String key : keySet) {
+                        
+                        //System.out.println(key + " - " + sortedMap.get(key));
+                        Set<String> set = new HashSet<String>(sortedMap.get(key));
+                        List<String> list = new ArrayList<String>(set);
+                        data.put(key, list);
+                        //System.out.println(key + ": " + list);
+                 }
+        return data;
+    }
+    
+    public void addData(String slang, String meaning){
+        List<String> value = new ArrayList<String>();
+        value.add(meaning); 
+        listSlangWord.put(slang, value);
+        fileWriter(listSlangWord);
+    }
+    
+    public void addDuplicate(String slang, String meaning){
+        listSlangWord.get(slang).add(meaning);
+        fileWriter(listSlangWord);
+    }
+    
+    public void addOverwrite(String slang, String meaning){
+        List<String> value = new ArrayList<String>();
+        value.add(meaning); 
+        listSlangWord.replace(slang, value);
+        fileWriter(listSlangWord);
+    }
+    
+    public void deleteData(String slang){        
+        listSlangWord.remove(slang);
+        fileWriter(listSlangWord);
+    }
+    
+    public void resetDatabase() throws IOException{
+        InputStream inStream = null;
+        OutputStream outStream = null;
+ 
+        try {
+            inStream = new FileInputStream(new File("ORIGINAL_SLANG"));
+            outStream = new FileOutputStream(new File("NEW_SLANG"));
+ 
+            int length;
+            byte[] buffer = new byte[1024];
+ 
+            // copy the file content in bytes
+            while ((length = inStream.read(buffer)) > 0) {
+                outStream.write(buffer, 0, length);
+            }
+            System.out.println("File is copied successful!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            inStream.close();
+            outStream.close();
+        }
+    }
 }
