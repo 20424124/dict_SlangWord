@@ -31,8 +31,8 @@ import java.util.TreeMap;
  */
 public class dao_SW {
     private String ORIGINAL_SLANG = "slang.txt";
-    private String NEW_SLANG = "new_Slang.txt";
-    private String HISTORY_SLANG = "history_Slang.txt";
+    private String NEW_SLANG = "new_slang.txt";
+    private String HISTORY_SLANG = "history.txt";
     
     private int sizeMap;
     
@@ -184,4 +184,15 @@ public class dao_SW {
             outStream.close();
         }
     }
+    
+    public void history_Find(String history) throws IOException{
+        FileWriter fw = new FileWriter(HISTORY_SLANG, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        
+        bw.write(history);
+        bw.newLine();
+        bw.close();
+        fw.close();
+    }
+    
 }
